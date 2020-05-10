@@ -1,0 +1,52 @@
+<html>
+  <head>
+    <script src="https://cdn.jsdelivr.net/npm/ractive"></script>
+  </head>
+  <body>  
+    <div id="output"></div>
+    <script type="text/ractive" id="input">
+
+      <h2>baþlýk</h2> 
+      <p>Selam, burasý body kýsmý</p>
+      <input type="number" value="{{bir}}" /> 
+      +
+      <input type="number" value="{{iki}}" />
+      = {{bir + iki}}
+      
+      <table border="solid">
+        
+        {{#each ogrenci_listesi}}
+        <tr>
+          <td>{{.ad}}</td>
+          <td>{{.no}}</td>
+        </tr>
+        {{/each}}
+      </table>
+      
+      <ul>
+        {{#each ogrenci_listesi}}
+        <li>Adý: <b>{{.ad}}</b>, Numarasý: {{.no}}</li>
+        {{/each}}
+      </ul>
+      <input value="{{ogrenci_adi}}" /> <input value="{{ogrenci_numarasi}}" /> 
+      <button 
+        on-click="@.push('ogrenci_listesi', {ad: ogrenci_adi, no: ogrenci_numarasi})" 
+        >ekle</button>
+
+    </script>
+    <script>
+      new Ractive({
+        target: "#output", 
+        template: "#input",
+        data: {
+          ogrenci_listesi: [
+            {ad: "cem", no: "123"},
+            {ad: "buse", no: "57"},
+            {ad: "mahmut", no:"345"}
+            ]
+           }
+        });
+       
+    </script>
+  </body>
+</html>
